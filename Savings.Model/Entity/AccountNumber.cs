@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Savings.Model.Entity
 {
-    public  class AccountNumber
+    public  class AccountNumber:BaseEntity
     {
         public Guid UserId { get; set; }
         public string Number { get; set; }
