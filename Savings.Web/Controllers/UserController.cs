@@ -22,7 +22,7 @@ namespace Savings.Web.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost("SignUp user")]
+        [HttpPost("SignUpUser")]
         public async Task<IActionResult> SignUpUser(SignUpModel model)
         {
             var response = await UserService.SignUpUser(model);
@@ -38,7 +38,7 @@ namespace Savings.Web.Controllers
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
-        [HttpPost("register")]
+        [HttpPost("Register")]
         public IActionResult Register(string password)
         {
             var (hash, salt) = UserService.HashPassword(password);
@@ -51,7 +51,7 @@ namespace Savings.Web.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPut("Update user")]
+        [HttpPut("UpdateUser")]
         public async Task<IActionResult> UpdateUser(UpdateUserViewModel model)
         {
             var response = await UserService.UpdateUser(model);
@@ -67,7 +67,7 @@ namespace Savings.Web.Controllers
         /// </summary>
         /// <param name="PhoneNumber"></param>
         /// <returns></returns>
-        [HttpPut("Update PhoneNumber")]
+        [HttpPut("UpdatePhoneNumber")]
         public async Task<IActionResult> UpdatePhoneNumber(string PhoneNumber)
         {
             var response = await UserService.UpdatePhoneNumber(PhoneNumber);
@@ -83,7 +83,7 @@ namespace Savings.Web.Controllers
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        [HttpGet("Get By Id")]
+        [HttpGet("GetById")]
         public async Task<IActionResult> GetById(Guid Id)
         {
             var response = await UserService.GetById(Id);
@@ -99,7 +99,7 @@ namespace Savings.Web.Controllers
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        [HttpPatch("Deactivate User ")]
+        [HttpPatch("DeactivateUser ")]
         public async Task<IActionResult> DeactivateUser(Guid Id)
         {
             var response = await UserService.DeactivateUser(Id);
@@ -115,7 +115,7 @@ namespace Savings.Web.Controllers
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        [HttpPatch("Activate User ")]
+        [HttpPatch("ActivateUser ")]
         public async Task<IActionResult> ActivateUser(Guid Id)
         {
             var response = await UserService.ActivateUser(Id);

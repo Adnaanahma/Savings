@@ -173,8 +173,9 @@ namespace Savings.Service.Services
             if (user != null)
             {
                 user.IsActive = false;
+                _unitOfWork.GetRepository<User>().Update(user);
                 await _unitOfWork.SaveChangesAsync();
-                return user.IsActive;
+              
             }
           
             throw new Exception("User Not Found");
@@ -194,8 +195,9 @@ namespace Savings.Service.Services
             if (user != null)
             {
                 user.IsActive = true;
+                _unitOfWork.GetRepository<User>().Update(user);
                 await _unitOfWork.SaveChangesAsync();
-                return user.IsActive;
+              
             }
          
             throw new Exception("User Not Found");

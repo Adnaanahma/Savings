@@ -13,14 +13,14 @@ namespace Savings.Migrations
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Account> Accountnumbers { get; set; }
-        public DbSet<Model.Entity.Savings> Savingsss { get; set; }
+        public DbSet<Account> Accounts { get; set; }
+        public DbSet<Model.Entity.Savingss> Savingsss { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().ToTable("Users");
-            modelBuilder.Entity<Account>().ToTable("AccountNumbers");
-            modelBuilder.Entity<Savings>().ToTable("Savingsss");
+            modelBuilder.Entity<Account>().ToTable("Accounts");
+            modelBuilder.Entity<Savingss>().ToTable("Savingss");
         }
     }
 }

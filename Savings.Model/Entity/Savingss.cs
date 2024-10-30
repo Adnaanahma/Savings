@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Savings.Model.Entity
 {
-    public class Savings:BaseEntity
+    public class Savingss:BaseEntity
     {
         public Guid AccountId { get; set; }
         public Account Account { get; set; }
