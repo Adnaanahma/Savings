@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Savings.Service.Services
 {
-    public  class AccountService
+    public  class AccountService : IAccountService
     {
         private readonly Random _random;
         public AccountService()
@@ -14,16 +14,8 @@ namespace Savings.Service.Services
             _random = new Random();
         }
 
-        public string [] GenerateAccountNumber(int count)
-        {
-            string[] accountNumber = new string[count];
-            for (int i = 0; i < count; i++)
-            {
-                accountNumber[i] = GenerateAccountNumber();
-            }
-            return accountNumber;
-        }
-        private string GenerateAccountNumber()
+      
+        public string AccountNumber()
         {
             char[] digits = new char[10];
             for (int i = 0; i < 10; i++)
