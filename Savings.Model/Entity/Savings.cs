@@ -6,11 +6,11 @@ using System.Text;
 
 namespace Savings.Model.Entity
 {
-    public class Savingss:BaseEntity
+    public class Savings:BaseEntity
     {
-        public int UserId { get; set; }
-        public User User { get; set; }
-        public Description Description { get; set; }
+        public Guid AccountId { get; set; }
+        public Account Account { get; set; }
+        public string Name { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
         public Decimal GoalAmount { get; set; }
@@ -18,5 +18,8 @@ namespace Savings.Model.Entity
         [Column(TypeName = "decimal(18,2)")]
         public Decimal CurrentBalance { get; set; }
         public DateTime? TargetDate { get; set; }
+        public DateTime StartDate { get; set; }
+        public SavingsFrequency Frequency { get; set; }
+        public double InterestRate { get; set; }
     }
 }

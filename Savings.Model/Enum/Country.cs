@@ -6,7 +6,9 @@ namespace Savings.Model.Enum
 {
     public enum Country
     {
-        Nigeria,
-        Otehr
+        Nigeria = 1,
+        UK,
+        USA,
+        Canada
     }
 }

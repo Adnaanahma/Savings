@@ -11,7 +11,7 @@ namespace Savings.Model.ViewModel
         public string Address { get; set; }
         public string PhoneNumber { get; set; }
         public Country Country { get; set; }
-        public Region Region { get; set; }
+       
 
 
     }

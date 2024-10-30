@@ -39,12 +39,12 @@ namespace Savings.Web
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Savings API",
+                    Title = "SavingsWeb",
                     Description = "A simple example ASP.NET Core Web API",
                     TermsOfService = new Uri("https://github.com/"),
                     Contact = new OpenApiContact
                     {
-                        Name = "Shayne Boyer",
+                        Name = "Addy Boss",
                         Email = string.Empty,
                         Url = new Uri("https://github.com/"),
                     },
@@ -57,9 +57,10 @@ namespace Savings.Web
             });
 
             services.AddDbContext<SavingsDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))).AddUnitOfWork<SavingsDbContext>();
+           
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ISavingsService, SavingsService>();
-            services.AddTransient< AccountNumberService>();
+            services.AddTransient< AccountService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
         
@@ -71,7 +72,7 @@ namespace Savings.Web
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Savings.API v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SavingsWeb v1"));
             }
 
            

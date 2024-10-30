@@ -4,9 +4,11 @@ using System.Text;
 
 namespace Savings.Model.Enum
 {
-    public  enum AccountType
+    public  enum Currency
     {
-        NigeriaAccount,
-        Other
+        NGN = 1,
+        GBP,
+        USD,
+        CND
     }
 }

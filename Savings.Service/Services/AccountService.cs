@@ -6,10 +6,10 @@ using System.Text;
 
 namespace Savings.Service.Services
 {
-    public  class AccountNumberService
+    public  class AccountService
     {
         private readonly Random _random;
-        public AccountNumberService()
+        public AccountService()
         {
             _random = new Random();
         }
