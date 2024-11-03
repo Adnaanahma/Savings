@@ -18,5 +18,6 @@ namespace Savings.Model.Entity
         public long AvailableBalance { get; set; }
         public long OpeningBalance { get; set; }
         public long ClosingBalance { get; set; }
+        public bool IsEnabled { get; set; }
     }
 }

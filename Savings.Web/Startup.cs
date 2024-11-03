@@ -40,7 +40,7 @@ namespace Savings.Web
            
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ISavingsService, SavingsService>();
-            services.AddTransient< AccountService>();
+            services.AddTransient< IAccountService, AccountService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSwaggerGen(c =>
             {

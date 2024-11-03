@@ -40,7 +40,6 @@ namespace Savings.Service.Services
                     PhoneNumber = model.PhoneNumber,
                     CreatedDate = DateTime.Now,
 
-
                 };
                 _unitOfWork.GetRepository<User>().Insert(newProfile);
                 await _unitOfWork.SaveChangesAsync();
