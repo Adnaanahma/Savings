@@ -38,12 +38,27 @@ namespace Savings.Web.Controllers
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
-        [HttpPost("Register")]
+        [HttpPost("RegisterHashPassword")]
         public IActionResult Register(string password)
         {
             var (hash, salt) = UserService.HashPassword(password);
             // Save hash and salt to the database
             return Ok(new { Hash = hash, Salt = salt });
+        }
+
+        /// <summary>
+        /// "Login Hash Password"
+        /// </summary>
+        /// <param name="password"></param>
+        /// <param name="storedSalt"></param>
+        /// <param name="storedHash"></param>
+        /// <returns></returns>
+        [HttpPost("LoginHashPassword")]
+        public IActionResult Login(string password, string storedSalt, string storedHash)
+        {
+            bool isValid = UserService.VerifyPassword(password, storedSalt, storedHash);
+            return Ok("Login successful");
+
         }
 
         /// <summary>
@@ -125,5 +140,6 @@ namespace Savings.Web.Controllers
             }
             else return BadRequest(response);
         }
+
     }
 }

@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20241028140747_SavingsDb.cs" />
     <Compile Remove="Migrations\20241028140747_SavingsDb.Designer.cs" />
+    <Compile Remove="Migrations\20241028141836_SavingsDb.cs" />
+    <Compile Remove="Migrations\20241028141836_SavingsDb.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

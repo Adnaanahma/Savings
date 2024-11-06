@@ -10,8 +10,8 @@ using Savings.Migrations;
 namespace Savings.Migrations.Migrations
 {
     [DbContext(typeof(SavingsDbContext))]
-    [Migration("20241028141836_SavingsDb")]
-    partial class SavingsDb
+    [Migration("20241105102726_SavingsDatabase")]
+    partial class SavingsDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,20 +21,47 @@ namespace Savings.Migrations.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Savings.Model.Entity.AccountNumber", b =>
+            modelBuilder.Entity("Savings.Model.Entity.Account", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("AccountNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("AvailableBalance")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ClosingBalance")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("GeneratedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("Currency")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Number")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<long>("LedgerBalance")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("LienEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<long>("OpeningBalance")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("PnCEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("PnDEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Tier")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -44,7 +71,7 @@ namespace Savings.Migrations.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AccountNumbers");
+                    b.ToTable("Accounts");
                 });
 
             modelBuilder.Entity("Savings.Model.Entity.Savingss", b =>
@@ -53,17 +80,29 @@ namespace Savings.Migrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("AccountId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("CurrentBalance")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Description")
+                    b.Property<int>("Frequency")
                         .HasColumnType("int");
 
                     b.Property<decimal>("GoalAmount")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<double>("InterestRate")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("TargetDate")
                         .HasColumnType("datetime2");
@@ -71,17 +110,11 @@ namespace Savings.Migrations.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("UserId1")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("AccountId");
 
-                    b.ToTable("Savingsss");
+                    b.ToTable("Savingss");
                 });
 
             modelBuilder.Entity("Savings.Model.Entity.User", b =>
@@ -89,12 +122,6 @@ namespace Savings.Migrations.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("AccountNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("AccountType")
-                        .HasColumnType("int");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -105,8 +132,8 @@ namespace Savings.Migrations.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DOB")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("DOB")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("EmailAddress")
                         .HasColumnType("nvarchar(max)");
@@ -129,9 +156,6 @@ namespace Savings.Migrations.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Region")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
@@ -142,9 +166,11 @@ namespace Savings.Migrations.Migrations
 
             modelBuilder.Entity("Savings.Model.Entity.Savingss", b =>
                 {
-                    b.HasOne("Savings.Model.Entity.User", "User")
+                    b.HasOne("Savings.Model.Entity.Account", "Account")
                         .WithMany()
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

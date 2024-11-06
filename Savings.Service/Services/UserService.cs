@@ -29,7 +29,7 @@ namespace Savings.Service.Services
         public async Task<BaseResponse> SignUpUser(SignUpModel model)
         {
             var profile = _unitOfWork.GetRepository<User>().GetFirstOrDefaultAsync(x => x.EmailAddress == model.EmailAddress, null, null, false);
-            // check if user exist
+          
             if (profile == null)
             {
                 var newProfile = new User
@@ -43,6 +43,7 @@ namespace Savings.Service.Services
                 };
                 _unitOfWork.GetRepository<User>().Insert(newProfile);
                 await _unitOfWork.SaveChangesAsync();
+
                 return new BaseResponse { Message = "User Created Successfully", Status = true };
             
             }
